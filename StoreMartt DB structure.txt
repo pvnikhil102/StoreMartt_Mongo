@@ -1,0 +1,49 @@
+Collections in the StoreMartt DB are: 
+
+
+1) customers
+_id: ObjectId (primary key)
+name: string
+email: string (unique)
+password: string
+billing_address: string
+shipping_address: string
+
+
+2) customer_locations
+_id: ObjectId (primary key)
+name: string
+address: string
+
+
+3) carts
+_id: ObjectId (primary key)
+customer_id: ObjectId (foreign key referencing customers._id)
+items: array of objects containing:
+product_id: ObjectId (foreign key referencing products._id)
+quantity: integer
+
+
+4) products
+_id: ObjectId (primary key)
+name: string
+description: string
+price: number
+category_id: ObjectId (foreign key referencing product_categories._id)
+
+
+5) product_categories
+_id: ObjectId (primary key)
+name: string
+
+
+6) orders
+_id: ObjectId (primary key)
+customer_id: ObjectId (foreign key referencing customers._id)
+items: array of objects containing:
+product_id: ObjectId (foreign key referencing products._id)
+quantity: integer
+order_date: date
+total_cost: number
+billing_address: string
+shipping_address: string

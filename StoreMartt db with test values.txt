@@ -1,0 +1,70 @@
+use StoreMartt
+
+db.createCollection("customers")
+db.customers.insertMany([
+  {
+    "_id": ObjectId("618e5f5a88a3e3f77c197f98"),
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "johndoe@gmail.com",
+    "phone": "555-1234",
+    "address": {
+      "street": "123 Main St",
+      "city": "Anytown",
+      "state": "CA",
+      "zip": "12345"
+    }
+  },
+  {
+    "_id": ObjectId("618e5f5a88a3e3f77c197f99"),
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "janesmith@yahoo.com",
+    "phone": "555-5678",
+    "address": {
+      "street": "456 Elm St",
+      "city": "Somewhere",
+      "state": "NY",
+      "zip": "67890"
+    }
+  }
+])
+
+
+db.createCollection("orders")
+db.orders.insertMany([  {    "_id": ObjectId("618e5f5a88a3e3f77c197f9a"),    "customer_id": ObjectId("618e5f5a88a3e3f77c197f98"),    "order_date": ISODate("2022-02-01T12:00:00Z"),    "total": 59.99,    "items": [      {        "name": "Widget",        "quantity": 2,        "price": 19.99      },      {        "name": "Gizmo",        "quantity": 1,        "price": 20.00      }    ]
+  },
+  {
+    "_id": ObjectId("618e5f5a88a3e3f77c197f9b"),
+    "customer_id": ObjectId("618e5f5a88a3e3f77c197f98"),
+    "order_date": ISODate("2022-02-15T10:00:00Z"),
+    "total": 29.99,
+    "items": [
+      {
+        "name": "Thingamajig",
+        "quantity": 1,
+        "price": 29.99
+      }
+    ]
+  }
+])
+
+db.createCollection("products")
+db.products.insertMany([  {    "_id": ObjectId("618e5f5a88a3e3f77c197f9c"),    "name": "Widget",    "price": 19.99,    "category": "Electronics",    "description": "A handy widget for all your needs."  },  {    "_id": ObjectId("618e5f5a88a3e3f77c197f9d"),    "name": "Gizmo",    "price": 20.00,    "category": "Electronics",    "description": "A cool gizmo for your collection."  },  {    "_id": ObjectId("618e5f5a88a3e3f77c197f9e"),    "name": "Thingamajig",    "price": 29.99,    "category": "Tools",    "description": "A useful thingamajig for your DIY projects."  }])
+
+db.customers.createIndex({ email: 1 }, { unique: true })
+
+db.createCollection("customer_locations")
+db.customer_locations.insertMany([  {    "_id": ObjectId("618e5f5a88a3e3f77c197f9f"),    "name": "StoreMartt Downtown",    "address": {      "street": "100 Main St",      "city": "Anytown",      "state": "CA",      "zip": "12345"    },    "phone": "555-1234",    "hours": {      "monday": "9am-8pm",      "tuesday": "9am-8pm",      "wednesday": "9am-8pm",      "thursday": "9am-8pm",      "friday": "9am-9pm",      "saturday": "10am-9pm",      "sunday": "10am-6pm"    }  },  {    "_id": ObjectId("618e5f5a88a3e3f77c197fa0"),    "name": "StoreMartt Uptown",    "address": {      "street": "200 Elm St",      "city": "Somewhere",      "state": "NY",      "zip": "67890"    },    "phone": "555-5678",    "hours": {      "monday": "10am-8pm",      "tuesday": "10am-8pm",      "wednesday": "10am-8pm",      "thursday": "10am-8pm",      "friday": "10am-9pm",      "saturday": "10am-9pm",      "sunday": "11am-6pm"    }  }])
+
+db.createCollection("carts")
+
+db.carts.insertMany([  {    "_id": ObjectId("618e5f5a88a3e3f77c197fa1"),    "customer_id": ObjectId("618e5f5a88a3e3f77c197f98"),    "items": [      {        "product_id": ObjectId("618e5f5a88a3e3f77c197f9c"),        "quantity": 2      },      {        "product_id": ObjectId("618e5f5a88a3e3f77c197f9d"),        "quantity": 1      }    ]
+  },
+  {
+    "_id": ObjectId("618e5f5a88a3e3f77c197fa2"),
+    "customer_id": ObjectId("618e5f5a88a3e3f77c197f99"),
+    "items": [
+      {
+        "product_id": ObjectId("618e5f5a88a3e3f77c197f9e"),
+        "quantity": 1
